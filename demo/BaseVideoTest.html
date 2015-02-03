@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+<video id="box" controls style="width:500px;height:400px;"></video>
+<button onclick="change()">切换</button>
+<script type="text/javascript" src="http://js.letvcdn.com/js/201501/14/lejs_1339/abc_lejs.js"></script>
+<script type="text/javascript">__loadjs('demo_base_video');</script>
+<script>
+(function() {
+    var video = new P.c.BaseVideo( document.getElementById('box') );
+
+    video.play({
+        type: 'vod',
+        url: 'http://10.200.90.43/video/1.mp4',
+        autoplay: true,
+        htime: 10
+    });
+
+    window.change = function() {
+        video.play({
+            type: 'vod',
+            url: 'http://10.200.90.43/video/2.mp4',
+            autoplay: true,
+            htime: 60
+        });
+    }
+})();
+
+</script>
+</body>
+</html>
