@@ -1,6 +1,6 @@
 (function( ) {
 
-    var VodPlayer = P.Class( 'VodPlayer', {
+    var VodPlayer = P.Class( {
 
         init : function( option ) {
             this.option = option;

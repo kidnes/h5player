@@ -1,8 +1,10 @@
 (function ( _super ) {
 
-    var CoreVideo = P.Class( 'CoreVideo', {
+    var CoreVideo = P.Class( {
 
         init : function( model ) {
+
+            this.model = model;
 
             this._initVideo( model );
 
@@ -15,7 +17,14 @@
 
             this.base = new P.c.BaseVideo( this.video );
 
-            model.url && this.playTV( { type: 'vod', url: model.url, autoplay: true } );
+            var opt = {
+                type        : model.type,
+                url         : model.url,
+                autoplay    : model.autoplay,
+                autoload    : model.autoload
+            }
+
+            model.url && this.playTV( opt );
         },
 
         _initEvent : function() {
@@ -42,7 +51,7 @@
                     this.base.changeFull( e.data );
                     break;
                 case 'TO_Replay':
-                    this.base.seek(1);
+                    this.base.seek(0);
                     this.base.resume();
                     break;
             }
@@ -54,6 +63,7 @@
         },
 
         playTV : function( elem ) {
+            
             this.base.play( elem );
         },
 

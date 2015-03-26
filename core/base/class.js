@@ -6,7 +6,7 @@
 
 (function() {
 
-    P.Class = function( name, object, superClass ) {
+    P.Class = function( object, superClass ) {
         object = object || {};
         superClass = superClass || Object;
 

@@ -1,0 +1,9 @@
+# 播放器参数
+
+type: 'vod'
+url: 'http://10.200.90.43/video/1.mp4'
+autoplay: true
+htime: 10
+
+autoload: false
+poster: 'http://i3.letvimg.com/lc03_isvrs/201503/22/23/57/e245ff50-fd6c-42f7-8268-32415c7762c0/thumb/2_400_300.jpg'

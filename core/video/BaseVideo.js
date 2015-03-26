@@ -20,7 +20,7 @@
     var mediaManage = P.c.MediaManage,
         full = P.m.fullscreen;
 
-    var BaseVideo = P.Class('BaseVideo', {
+    var BaseVideo = P.Class( {
         
         init : function( video ) {
             this.video = video;

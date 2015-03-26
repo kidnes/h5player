@@ -1,7 +1,8 @@
 (function( _super ) {
 
-    var FullBtn = P.Class('FullBtn', {
+    var FullBtn = P.Class( {
         init : function( model ) {
+            this.model = model;
 
             this._initDom( model.parentEl );
 
@@ -16,11 +17,11 @@
         },
         
         _addEvent : function() {
-            this.$el.on( 'click touchstart', this._onBtnFull, this );
+            this.$el.on( this.model.isPC ? 'click' : 'touchstart', this._onBtnFull, this );
         },
 
         _removeEvent : function() {
-            this.$el.off( 'click touchstart', this._onBtnFull, this );
+            this.$el.off( this.model.isPC ? 'click' : 'touchstart', this._onBtnFull, this );
         },
 
         _onBtnFull : function( e ) {

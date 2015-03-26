@@ -14,11 +14,17 @@
 
         this.views.loading = new P.v.Loading( model );
 
+        this.views.poster = new P.v.Poster( model );
+
+        this.views.bigPlayBtn = new P.v.BigPlayBtn( model );
+
         this.views.btnPlay = new P.v.PlayBtn( model );
 
         this.views.btnFull = new P.v.FullBtn( model );
 
         this.views.bar = new P.v.ProgressBar( model, this.views.core );
+
+        this.views.app = new P.v.Application( this.views );
 
     }
 
@@ -74,7 +80,7 @@
         head.appendChild( node );
     }
 
-    var PrepView = P.Class( 'PrepView', {
+    var PrepView = P.Class( {
         init : function( model ) {
             console.log('onPrepView', model);
 

@@ -6,7 +6,7 @@
 
 (function( _super ) {
 
-    var Component = P.Class('Component', {
+    var Component = P.Class( {
         init: function( model ) {
             
         },
@@ -16,8 +16,8 @@
         hide : function() {
             this.el.style.display = 'none';
         },
-        enable : function() { },
-        disable : function() { }
+        enable : function( flag ) { }
+
     }, _super);
 
     P.v.Component = Component;

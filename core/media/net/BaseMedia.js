@@ -4,13 +4,15 @@
                     playing timeupdate pause error ended seeked";
 
 
-    var BaseMedia = P.Class('BaseMedia', {
+    var BaseMedia = P.Class( {
 
         init : function( video ) {
 
             this.video = video;
 
             this._initEvt();
+
+            this._checkStart();
         },
 
         _initEvt : function() {
@@ -20,12 +22,14 @@
             _video.on( events, this._onEvt, this );
 
             _video.on( P.m.fullscreen['change'], this._onFullChange, this );
+
+            this.on( 'ended', this._checkStart, this );
         },
 
         _onEvt : function( e ) {
-            // if ( e.type !== 'timeupdate' ) {
-            //     console.log('_onEvt:'+e.type);
-            // }
+            if ( e.type !== 'timeupdate' ) {
+                // console.log('_onEvt:'+e.type);
+            }
 
             this.fire( e.type );
         },
@@ -35,9 +39,13 @@
             this.fire( 'Video::Fullchange', this.isFull );
         },
 
+        _checkStart : function() {
+            this.on( 'timeupdate', this._onTimeupdate, this );
+        },
+
         _onTimeupdate : function( e ) {
 
-            if ( ++this.timeCount >= 2 ) {  //chrome浏览器无自动播放时，会触发一次timeupdate
+            if ( this.video.currentTime > 0 ) {  //chrome浏览器无自动播放时，会触发一次timeupdate
                 this.fire( 'Video::Playstart' );
 
                 this.off( 'timeupdate', this._onTimeupdate );
@@ -49,6 +57,11 @@
             this.video.play();
 
             !this.video.fake && this._fakeClick();  //只有第一次调用，切换清晰度等不调用
+        },
+
+        _autoload : function() {
+            
+            this.video.load();
         },
 
         _fakeClick: function() {
@@ -81,19 +94,17 @@
 
         play : function( elem ) {
 
-            this.timeCount = 0;
-            this.on( 'timeupdate', this._onTimeupdate, this );
+            this.video.setAttribute('preload', elem.autoload ? 'auto' : 'none');
 
             this.src( elem.url );
             
+            elem.autoload && this._autoload();
             elem.autoplay && this._autoplay();
         },
 
         src : function( src ) {
             
             this.video.setAttribute('src', src);
-
-            this.video.load();
         },
 
         setStatus : function( status ) {

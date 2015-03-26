@@ -1,6 +1,6 @@
 (function(_super) {
 
-    var Touchable = P.Class('Touchable', {
+    var Touchable = P.Class( {
         init: function( node, option ) {
             this.inDoubleTap = false;
             this.isOneFingerGesture = false;

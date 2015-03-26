@@ -11,8 +11,6 @@
 </head>
 <body>
 <div id="box1" style="width:500px;height:400px;"></div>
-<div id="box2" style="width:500px;height:400px;"></div>
-<div id="box3" style="width:500px;height:400px;"></div>
 
 <script src="http://libs.baidu.com/zepto/0.8/zepto.min.js"></script>
 
@@ -21,24 +19,15 @@
 <script>
 (function() {
 
-    var option1 = {
+    var option = {
         cont : 'box1',
-        url : 'http://10.200.89.126/video/1.mp4'
-    },
-    option2 = {
-        cont : 'box2',
-        url : 'http://10.200.89.126/video/2.mp4'
-    },
-    option3 = {
-        cont : 'box3',
-        url : 'http://10.200.89.126/video/1.mp4'
+        url : 'http://115.182.63.143/video/1.mp4',
+        autoplay : 1,
+        autoload : 1,
+        poster: 'http://i3.letvimg.com/lc03_isvrs/201503/22/23/57/e245ff50-fd6c-42f7-8268-32415c7762c0/thumb/2_400_300.jpg'
     };
 
-    var player1 = new P.VodPlayer( option1 );
-
-    // var player2 = new P.VodPlayer( option2 );
-
-    // var player3 = new P.VodPlayer( option3 );
+    var player = new P.VodPlayer( option );
 
     
     

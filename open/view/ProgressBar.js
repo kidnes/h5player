@@ -1,6 +1,6 @@
 (function( _super ) {
 
-    var ProgressBar = P.Class('ProgressBar', {
+    var ProgressBar = P.Class( {
         init: function( model, core ) {
             this.core = core;
 
@@ -8,7 +8,7 @@
 
             this._initDom( model.parentEl );
 
-            this._addEvent();
+            this._initEvent();
         },
 
         _initDom : function( parent ) {
@@ -30,6 +30,10 @@
 
             this.slider = new P.m.Touchable( this.$e_slider );
         },
+
+        _initEvent : function() {
+            this.on( 'Video::Playstart Video::Durachange Video::Seeked ended', this._onVideoEvt, this );
+        },
         
         _addEvent : function() {
 
@@ -41,7 +45,6 @@
             this.on( 'touchmove', this._onTouchMove, this );
             this.on( 'touchend', this._onTouchEnd, this );
 
-            this.on( 'Video::Durachange Video::Seeked', this._onVideoEvt, this );
         },
 
         _removeEvent : function() {
@@ -54,7 +57,6 @@
             this.off( 'touchmove', this._onTouchMove, this );
             this.off( 'touchend', this._onTouchEnd, this );
 
-            this.off( 'Video::Durachange Video::Seeked', this._onVideoEvt, this );
         },
 
         _onTouchStart: function( e ) {
@@ -121,17 +123,30 @@
             
             switch ( e.type ) {
 
+                case 'Video::Playstart':
+                    this.enable( true );
+
+                    break;
+
+                case 'ended':
+                    this.count = 5;
+                    
+                    this.setProgress(0);
+
+                    break;
+
                 case 'Video::Seeked':
                     this.isSeeking = false;
 
                     break;
-                
+
                 case 'Video::Durachange':
                     this.dura = e.data;
 
                     this.e_totaltime.innerHTML = this.formatTime( this.dura );
 
                     this.setBufferBar();
+
                     break;
             }
         },
@@ -215,7 +230,7 @@
 
             var buffTime = buffered.end( buffered.length - 1 );
 
-            if ( buffTime > this.currTime ) {
+            if ( buffTime > this.currTime || !this.currTime ) {
                 var percent = buffTime / this.dura * 100;
 
                 percent = Math.max( percent, this.percent || 0 );
@@ -233,6 +248,13 @@
             s < 10 && ( s = "0" + s );
 
             return m + ":" + s;
+        },
+
+        enable : function( flag ) {
+
+            this._enable = flag;
+            
+            flag ? this._addEvent() : this._removeEvent();
         }
         
     }, _super);

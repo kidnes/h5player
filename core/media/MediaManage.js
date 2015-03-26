@@ -7,7 +7,8 @@
                 type: value.type,
                 url: value.url,
                 htime: value.htime,
-                autoplay: value.autoplay
+                autoplay: value.autoplay,
+                autoload: value.autoload
             }
         },
 

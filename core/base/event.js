@@ -59,8 +59,14 @@
                 return this;
             }
 
+
+
             eachEvent( parts.e, callback, function( name, callback ) {
                 !ns[ name ] && ( ns[ name ] = [ ] );
+
+                if ( findHandlers( ns[ name ], name, callback, context ).length > 0) {
+                    return;
+                }
 
                 var handler = { e : name };
 

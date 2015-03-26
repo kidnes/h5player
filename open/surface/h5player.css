@@ -1,10 +1,3 @@
-body, p, dl, dt, dd, ul, ol, li {
-    margin: 0;
-    padding: 0
-}
-html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 {
-    -webkit-text-size-adjust: none
-}
 .hv_box {
     font: 12px/1.5 "\5FAE\8F6F\96C5\9ED1", arial;
     *line-height: 1.5
@@ -19,18 +12,6 @@ html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 {
 }
 .hv_box img {
     border: 0
-}
-div:after, ul:after, dl:after, .clearfix:after {
-    content: "";
-    display: block;
-    clear: both;
-    height: 0;
-    visibility: hidden
-}
-abbr, article, aside, audio, canvas, datalist, details, figure, footer, header, hgroup, menu, nav, output, progress, section, video {
-    display: block;
-    margin: 0;
-    padding: 0
 }
 .hv_box a {
     text-decoration: none
@@ -252,7 +233,7 @@ abbr, article, aside, audio, canvas, datalist, details, figure, footer, header, 
     border-right: 1px solid #FFFFFF
 }
 .hv_ico_stop {
-    background-position: 12px -64px;
+    background-position: 14px -64px;
     display: none
 }
 .hv_ico_refresh {

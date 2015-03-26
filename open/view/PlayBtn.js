@@ -1,7 +1,9 @@
 (function( _super ) {
 
-    var PlayBtn = P.Class('PlayBtn', {
+    var PlayBtn = P.Class( {
         init: function( model ) {
+            this.model = model;
+
             this._initDom( model.parentEl );
 
             this._addEvent();
@@ -15,13 +17,13 @@
         },
         
         _addEvent : function() {
-            this.$el.on( 'click touchstart', this._onBtnPlay, this );
+            this.$el.on( this.model.isPC ? 'click' : 'touchstart', this._onBtnPlay, this );
 
             this.on( 'play pause ended', this._onVideoEvt, this );
         },
 
         _removeEvent : function() {
-            this.$el.off( 'click touchstart', this._onBtnPlay, this );
+            this.$el.off( this.model.isPC ? 'click' : 'touchstart', this._onBtnPlay, this );
 
             this.off( 'play pause ended', this._onVideoEvt, this );
         },

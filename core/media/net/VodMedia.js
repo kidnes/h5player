@@ -1,6 +1,6 @@
 (function ( _super ) {
 
-    var VodMedia = P.Class('VodMedia', {
+    var VodMedia = P.Class( {
         init : function( video ) {
             this.video = video;
 
